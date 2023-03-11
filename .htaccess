@@ -1,0 +1,21 @@
+# DEFINE A PÁGINA DE INDEX
+DirectoryIndex inicio.php
+
+# DEFINE PÁGINA PARA ERRO 404
+ErrorDocument 404 https://www.canaajdguanabara.ga
+
+# ATIVA O MOTOR DE REESCRITA
+RewriteEngine on 
+
+# REDIRECIONAR /ARQUIVO.php PARA /ARQUIVO
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.php [NC]
+RewriteRule ^ /%1 [NE,L,R]
+
+# MAPEIA /ARQUIVO PARA /ARQUIVO.php
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)/?$ /$1.php  [L]
+
+# FORÇAR USO DE HTTPS FEITO NA CLOUDFLARE
+
+# NÃO PERMITIR NAVEGAR PELOS ARQUIVOS
+Options All -Indexes
